@@ -1,0 +1,299 @@
+// Variables
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+$dark-color: #2c3e50;
+$light-color: #ecf0f1;
+$text-dark: #2c3e50;
+$text-light: #7f8c8d;
+$white: #ffffff;
+$gradient-primary: linear-gradient(135deg, $primary-color, $secondary-color);
+$gradient-accent: linear-gradient(135deg, $accent-color, $primary-color);
+$gradient-dark: linear-gradient(135deg, $dark-color, #34495e);
+
+// Typography
+$font-primary: 'Poppins', sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Breakpoints
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1200px;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-xxl: 4rem;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin card-shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@mixin button-style($bg-color, $text-color: $white) {
+    background: $bg-color;
+    color: $text-color;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@mixin section-padding {
+    padding: $spacing-xxl 0;
+    
+    @media (max-width: $mobile) {
+        padding: $spacing-xl 0;
+    }
+}
+
+@mixin container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    
+    @media (max-width: $mobile) {
+        padding: 0 $spacing-sm;
+    }
+}
+
+// Reset and Base Styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-primary;
+    line-height: 1.6;
+    color: $text-dark;
+    overflow-x: hidden;
+}
+
+.container {
+    @include container;
+}
+
+// Header and Navigation
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    
+    &.scrolled {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.navbar {
+    padding: $spacing-sm 0;
+    
+    .nav-container {
+        @include container;
+        @include flex-between;
+        
+        .nav-logo {
+            h2 {
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: $font-weight-bold;
+            }
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: $spacing-lg;
+            
+            @media (max-width: $mobile) {
+                flex-direction: column;
+                align-items: center;
+                justify-content: start;
+                padding-top: $spacing-xl;
+                background: $white;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-link {
+                color: $text-dark;
+                text-decoration: none;
+                font-weight: $font-weight-medium;
+                position: relative;
+                transition: color 0.3s ease;
+                
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: $gradient-primary;
+                    transition: width 0.3s ease;
+                }
+                
+                &:hover {
+                    color: $primary-color;
+                    
+                    &::after {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Hero Section
+.hero {
+    @include section-padding;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    @include flex-center;
+    color: $white;
+    padding-top: calc(#{$spacing-xxl} + 70px);
+    
+    .hero-container {
+        @include container;
+    }
+    
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+        align-items: center;
+        
+        @media (max-width: $mobile) {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: $spacing-lg;
+        }
+    }
+    
+    .hero-text {
+        .greeting {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: $font-weight-regular;
+            margin-bottom: $spacing-xs;
+            opacity: 0.9;
+        }
+        
+        .name {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: $font-weight-bold;
+            margin-bottom: $spacing-xs;
+            
+            @media (max-width: $mobile) {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .profession {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: $font-weight-medium;
+            margin-bottom: $spacing-md;
+            color: rgba(255, 255, 255, 0.8);
+            
+            @media (max-width: $mobile) {
+                font-size: 1.2rem;
+            }
+        }
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+        margin-bottom: $spacing-lg;
+        opacity: 0.9;
+        line-height: 1.7;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        gap: $spacing-md;
+        
+        @media (max-width: $mobile) {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn-primary {
+            @include button-style($white, $primary-color);
+        }
+        
+        .btn-secondary {
+            @include button-style(transparent, $white);
+            border: 2px solid $white;
+            
+            &:hover {
+                background: $white;
+                color: $primary-color;
+            }
+        }
+    }
+    
+    .hero-image {
+        @include flex-center;
+        
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            @include card-shadow;
+            
+            @media (max-width: $mobile) {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    }
+}
