@@ -297,3 +297,21 @@ body {
         }
     }
 }
+
+// Additional Box (Card) Styling
+.box-section {
+    @include section-padding;
+    background: $white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: $spacing-lg;
+    color: $text-dark;
+    transition: all 0.3s ease;
+    margin-bottom: $spacing-xxl; // jarak antar box
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+}
+

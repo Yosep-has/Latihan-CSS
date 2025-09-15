@@ -253,4 +253,26 @@ body {
   }
 }
 
+.box-section {
+  padding: 4rem 0;
+}
+@media (max-width: 768px) {
+  .box-section {
+    padding: 3rem 0;
+  }
+}
+.box-section {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  margin-bottom: 4rem;
+}
+.box-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
 /*# sourceMappingURL=styles.css.map */
